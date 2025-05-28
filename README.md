@@ -115,6 +115,48 @@ Edit `src/lib/portfolio-config.ts` to customize:
 - **Code Splitting**: Optimized bundle sizes
 - **Service Worker**: Basic caching for offline support
 
+## 🚀 Deployment
+
+### Vercel (Recommended)
+
+1. **Push to GitHub**: Ensure your code is pushed to a GitHub repository
+2. **Import to Vercel**: Connect your GitHub repo to Vercel
+3. **Configure Settings**:
+   - Framework Preset: `Next.js`
+   - Root Directory: `./` (should be auto-detected)
+   - Build Command: `npm run build` (auto-detected)
+   - Output Directory: `.next` (auto-detected)
+   - Node.js Version: `18.x` (specified in `.nvmrc`)
+
+### Manual Deployment Steps
+
+If you encounter the "No Next.js version detected" error:
+
+1. **Verify package.json**: Ensure `next` is listed in dependencies
+2. **Check Root Directory**: Make sure Vercel is pointing to the correct folder
+3. **Clear Build Cache**: Try deploying without cache
+4. **Environment Variables**: Ensure no required env vars are missing
+
+### Build Commands
+
+```bash
+# Local build test
+npm run build
+
+# Type checking
+npm run type-check
+
+# Clean build artifacts
+npm run clean
+```
+
+### Environment Setup
+
+The project includes:
+- `vercel.json` - Vercel deployment configuration
+- `.nvmrc` - Node.js version specification
+- `.vercelignore` - Files to ignore during deployment
+
 ---
 
 Built with ❤️ using cutting-edge web technologies for a truly futuristic experience.

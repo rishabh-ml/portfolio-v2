@@ -1,0 +1,13 @@
+# Vercel ignore file
+node_modules
+.next
+.git
+*.log
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Duplicate files that shouldn't be deployed
+src/components/sections/*-new.tsx
+src/components/sections/about-fixed.tsx

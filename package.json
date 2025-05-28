@@ -2,11 +2,16 @@
   "name": "rishabh-portfolio-v2",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf .next"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
