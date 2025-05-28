@@ -2,18 +2,18 @@ export const portfolioConfig = {
   personal: {
     name: "Rishabh Shukla",
     title: "Full Stack Developer",
-    subtitle: "IT Proposal Writer",
-    bio: "Building scalable web applications with cutting-edge technologies and contributing to open-source innovation",
-    location: "Remote",
+    subtitle: "Proposal Writer & Open Source Contributor",
+    bio: "Fast-learning Full Stack Developer with a passion for clean, scalable code and real-world impact. Experienced in building end-to-end web applications with modern frameworks and deploying them confidently. Active open-source contributor and public learner, bringing a unique blend of technical skill and business communication.",
+    location: "Lucknow, Uttar Pradesh, India",
     email: "contact.rishabh.shukla@gmail.com",
+    phone: "+91 8738060587",
     avatar: "/rishabh.png",
     resume: "/resume.pdf"
   },
-  
-  social: {
+    social: {
     github: "https://github.com/rishabh-ml",
-    linkedin: "https://linkedin.com/in/rishabh-ml",
-    twitter: "https://twitter.com/rishabh_ml",
+    linkedin: "https://www.linkedin.com/in/rishabh-ml/",
+    portfolio: "https://rishabh-ml.vercel.app",
     email: "mailto:contact.rishabh.shukla@gmail.com"
   },
 
@@ -21,114 +21,147 @@ export const portfolioConfig = {
     frontend: [
       { name: "React.js", level: "Expert", icon: "⚛️" },
       { name: "Next.js", level: "Expert", icon: "▲" },
+      { name: "JavaScript (ES6+)", level: "Expert", icon: "🟨" },
       { name: "TypeScript", level: "Advanced", icon: "🔷" },
-      { name: "Tailwind CSS", level: "Expert", icon: "🎨" },
+      { name: "HTML5", level: "Expert", icon: "🔸" },
+      { name: "CSS3", level: "Expert", icon: "🎨" },
+      { name: "Tailwind CSS", level: "Expert", icon: "💨" },
       { name: "Framer Motion", level: "Advanced", icon: "🎬" }
     ],
     backend: [
       { name: "Node.js", level: "Advanced", icon: "🟢" },
       { name: "Express.js", level: "Advanced", icon: "⚡" },
-      { name: "tRPC", level: "Intermediate", icon: "🔧" },
-      { name: "Prisma", level: "Advanced", icon: "🔺" }
+      { name: "PHP", level: "Intermediate", icon: "🐘" },
+      { name: "Java", level: "Advanced", icon: "☕" },
+      { name: "Spring Boot", level: "Intermediate", icon: "🍃" },
+      { name: "Python", level: "Basic", icon: "🐍" },
+      { name: "RESTful APIs", level: "Advanced", icon: "🔗" }
     ],
     database: [
       { name: "MongoDB", level: "Advanced", icon: "🍃" },
-      { name: "PostgreSQL", level: "Intermediate", icon: "🐘" },
-      { name: "Redis", level: "Intermediate", icon: "🔴" }
+      { name: "MySQL", level: "Advanced", icon: "🐬" },
+      { name: "Firebase", level: "Intermediate", icon: "🔥" }
     ],
     tools: [
       { name: "Git", level: "Expert", icon: "🔄" },
-      { name: "Docker", level: "Intermediate", icon: "🐳" },
-      { name: "AWS", level: "Intermediate", icon: "☁️" },
-      { name: "Vercel", level: "Advanced", icon: "▲" }
+      { name: "GitHub", level: "Expert", icon: "🐙" },
+      { name: "Vercel", level: "Advanced", icon: "▲" },
+      { name: "Postman", level: "Advanced", icon: "📮" },
+      { name: "Figma", level: "Intermediate", icon: "🎨" },
+      { name: "Canva", level: "Intermediate", icon: "📐" }
     ]
   },
-
   featuredProjects: [
     {
       id: "chattersphere",
       title: "ChatterSphere",
-      description: "Next-gen social platform combining Reddit-style communities with Discord-like real-time messaging",
+      description: "A Reddit–Discord-inspired platform with dynamic communities, threaded discussions, and real-time voting",
       image: "/projects/chattersphere.png",
-      tech: ["Next.js", "Clerk", "MongoDB", "Socket.io", "TailwindCSS"],
+      tech: ["Next.js", "MongoDB", "Tailwind CSS", "Clerk Auth", "Framer Motion"],
       github: "https://github.com/rishabh-ml/chattersphere",
       live: "https://chattersphere.vercel.app",
       featured: true,
-      highlights: ["Real-time messaging", "Community system", "User authentication"]
+      highlights: ["Role-based access", "Real-time voting", "Content visibility filters", "Scalable backend APIs"]
     },
     {
-      id: "ecommerce",
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with modern UI/UX and comprehensive admin dashboard",
-      image: "/projects/ecommerce.png",
-      tech: ["Next.js", "TypeScript", "Stripe", "Prisma", "PostgreSQL"],
-      github: "https://github.com/rishabh-ml/ecommerce-platform",
-      live: "https://ecommerce-demo.vercel.app",
+      id: "healthease",
+      title: "HealthEase",
+      description: "Doctor consultation mobile app with booking, chat, and secure health records storage",
+      image: "/projects/healthease.png",
+      tech: ["React Native", "Firebase", "Expo"],
+      github: "https://github.com/rishabh-ml/healthease",
+      live: "#",
       featured: true,
-      highlights: ["Payment integration", "Admin dashboard", "Inventory management"]
+      highlights: ["Real-time chat", "Firebase integration", "Secure authentication", "Mobile-first design"]
+    },
+    {
+      id: "inkflow",
+      title: "InkFlow",
+      description: "Real-time collaborative whiteboard tool with drawing sync, chat, and version control (College Hackathon Finalist)",
+      image: "/projects/inkflow.png",
+      tech: ["React", "Node.js", "Socket.io"],
+      github: "https://github.com/rishabh-ml/inkflow",
+      live: "#",
+      featured: true,
+      highlights: ["Real-time collaboration", "WebSocket integration", "Team interaction", "Drawing synchronization"]
+    },
+    {
+      id: "tenda",
+      title: "Tenda",
+      description: "Smart Tender Management System - Enterprise-grade platform for managing bids, tenders, and contract workflows",
+      image: "/projects/tenda.png",
+      tech: ["Java", "Spring Boot", "MySQL", "Thymeleaf"],
+      github: "https://github.com/rishabh-ml/tenda",
+      live: "#",
+      featured: true,
+      highlights: ["Enterprise-grade", "Workflow automation", "Role-based access", "Document management"]
+    }
+  ],
+  projects: [
+    {
+      id: "excalidraw-contrib",
+      title: "Excalidraw - Open Source Contribution",
+      description: "Authored official architecture.md documentation for the globally-used whiteboard tool",
+      tech: ["TypeScript", "React", "Open Source", "Documentation"],
+      github: "https://github.com/excalidraw/excalidraw",
+      live: "https://excalidraw.com"
     },
     {
       id: "portfolio-v2",
       title: "Portfolio v2",
-      description: "Futuristic developer portfolio with advanced animations and modern design patterns",
-      image: "/projects/portfolio.png",
+      description: "Modern developer portfolio with advanced animations and professional design",
       tech: ["Next.js", "Framer Motion", "TailwindCSS", "TypeScript"],
       github: "https://github.com/rishabh-ml/portfolio-v2",
-      live: "https://rishabh-ml.vercel.app",
-      featured: true,
-      highlights: ["Advanced animations", "Responsive design", "Performance optimized"]
-    }
-  ],
-
-  projects: [
-    {
-      id: "task-manager",
-      title: "Task Management App",
-      description: "Collaborative task management with real-time updates and team features",
-      tech: ["React", "Node.js", "Socket.io", "MongoDB"],
-      github: "https://github.com/rishabh-ml/task-manager",
-      live: "https://taskmanager-demo.vercel.app"
-    },
-    {
-      id: "weather-app",
-      title: "Weather Dashboard",
-      description: "Beautiful weather app with location-based forecasts and animations",
-      tech: ["React", "OpenWeather API", "Chart.js", "CSS3"],
-      github: "https://github.com/rishabh-ml/weather-app",
-      live: "https://weather-dashboard-demo.vercel.app"
+      live: "https://rishabh-ml.vercel.app"
     }
   ],
 
   achievements: [
     {
-      id: "fullstack-cert",
-      title: "Full-Stack Development Certification",
-      issuer: "30DaysCoding",
-      date: "2024-01-01",
-      type: "certification",
-      icon: "🏆"
-    },
-    {
       id: "react-cert",
-      title: "React.js Complete Guide",
-      issuer: "Udemy (Maximilian)",
-      date: "2023-12-01",
+      title: "React JS Certification",
+      issuer: "Udemy",
+      date: "2025-01-01",
       type: "certification",
       icon: "⚛️"
     },
     {
+      id: "nextjs-cert",
+      title: "Next.js Full Stack Development",
+      issuer: "30DaysCoding",
+      date: "2024-12-01",
+      type: "certification",
+      icon: "▲"
+    },
+    {
+      id: "java-cert",
+      title: "Java Development",
+      issuer: "30DaysCoding",
+      date: "2024-11-01",
+      type: "certification",
+      icon: "☕"
+    },
+    {
       id: "android-cert",
       title: "Android Development",
-      issuer: "DigiCoders",
-      date: "2023-11-01",
+      issuer: "Digicoders Technologies",
+      date: "2024-10-01",
       type: "certification",
       icon: "📱"
     },
     {
+      id: "hackathon-finalist",
+      title: "InkFlow - College Hackathon Finalist",
+      issuer: "College Hackathon",
+      date: "2024-09-01",
+      type: "achievement",
+      icon: "🏆"
+    },
+    {
       id: "oss-contributor",
-      title: "Open Source Contributor",
+      title: "Open Source Contributor - Excalidraw",
       issuer: "GitHub",
-      date: "2024-02-01",
+      date: "2024-08-01",
       type: "milestone",
       icon: "🌟"
     }
@@ -136,49 +169,57 @@ export const portfolioConfig = {
 
   experience: [
     {
-      id: "dataman",
-      company: "DatamanUSA",
-      role: "IT Proposal Writer",
-      period: "June 2023 - Present",
-      description: "Specialized in securing government contracts through technical proposal writing. Expert in MERN stack development and active contributor to open-source projects.",
-      technologies: ["React", "Node.js", "MongoDB", "Technical Writing"],
+      id: "proposal-writer",
+      company: "DatamanUSA, LLC",
+      role: "Proposal Writer",
+      period: "Jun 2024 – Present",
+      description: "Drafted and structured RFP responses for multimillion-dollar federal, state, and local government contracts across IT, healthcare, and staffing verticals. Automated parts of the sourcing and pre-bid process using scripts to save 10+ hours weekly.",
+      technologies: ["Technical Writing", "RFP Analysis", "Process Automation", "Cross-functional Collaboration"],
       current: true
+    },
+    {
+      id: "business-dev",
+      company: "DatamanUSA, LLC",
+      role: "Business Development Executive",
+      period: "Jun 2023 – Mar 2024",
+      description: "Conducted targeted lead research and outreach, resulting in 25% growth in qualified proposal opportunities. Created visually engaging pitch decks and marketing collateral using Canva and Figma.",
+      technologies: ["Lead Generation", "Proposal Management", "Canva", "Figma", "Business Development"],
+      current: false
     },
     {
       id: "freelance",
       company: "Freelance",
       role: "Full Stack Developer",
-      period: "Jan 2022 - May 2023",
-      description: "Built scalable web applications for various clients, focusing on modern development practices and clean code architecture.",
-      technologies: ["Next.js", "React", "Node.js", "PostgreSQL", "TypeScript"],
-      current: false
+      period: "2022 – Present",
+      description: "Active freelancer delivering digital and software services on platforms like Upwork and Freelancer.com. Delivered projects across landing pages, admin dashboards, and automation scripts.",
+      technologies: ["React", "Next.js", "Node.js", "Full Stack Development", "Client Management"],
+      current: true
     }
   ],
-
   ossContributions: [
     {
       id: "excalidraw",
       project: "Excalidraw",
-      description: "Contributed to architecture documentation and feature improvements",
+      description: "Authored official architecture.md documentation to help new contributors understand component structure and internal logic",
       url: "https://github.com/excalidraw/excalidraw",
       type: "Documentation",
       language: "TypeScript"
-    },
-    {
-      id: "nextjs",
-      project: "Next.js",
-      description: "Bug fixes and performance optimizations",
-      url: "https://github.com/vercel/next.js",
-      type: "Bug Fix",
-      language: "JavaScript"
     }
   ],
+
+  education: {
+    degree: "Diploma in Computer Science & Engineering",
+    institution: "Government Polytechnic Mohammadi, Uttar Pradesh, India",
+    period: "Sep 2022 – Aug 2025 (Expected)",
+    focus: "Web Development, Software Engineering, and Backend Systems"
+  },
+
   stats: {
-    yearsOfExperience: 3,
-    projectsCompleted: 15,
-    githubStars: 120,
-    contributions: 200,
-    achievements: 8
+    yearsOfExperience: 2,
+    projectsCompleted: 20,
+    githubStars: 150,
+    contributions: 250,
+    achievements: 6
   }
 };
 

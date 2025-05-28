@@ -4,6 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Download, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useGitHubStats } from "@/lib/useGitHubStats";
 
 const socialLinks = [
   {
@@ -27,12 +28,15 @@ const socialLinks = [
 ];
 
 // GitHub stats (these would typically come from GitHub API)
+// Commenting out static stats since we now use real GitHub API data
+/*
 const githubStats = {
   totalCommits: "500+",
   currentStreak: "45 days",
   totalRepos: "25+",
   contributions: "1.2k+"
 };
+*/
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -51,6 +55,9 @@ const itemVariants = {
 };
 
 export function Footer() {
+  // Use real GitHub stats from API
+  const githubStats = useGitHubStats('rishabh-ml');
+
   return (
     <footer className="py-6 pb-20 md:pb-16 glass border-t border-white/10">
       <div className="max-w-4xl mx-auto px-4">
@@ -66,7 +73,17 @@ export function Footer() {
             variants={itemVariants}
             className="text-center space-y-4"
           >
-            <h3 className="text-sm font-medium text-foreground">GitHub Activity</h3>
+            <div className="flex items-center justify-center gap-2">
+              <h3 className="text-sm font-medium text-foreground">GitHub Activity</h3>
+              {githubStats.isLoading && (
+                <div className="w-3 h-3 border border-accent-cyan/30 border-t-accent-cyan rounded-full animate-spin" />
+              )}
+            </div>
+            {githubStats.lastUpdated && (
+              <p className="text-xs text-muted-foreground font-mono">
+                Last updated: {githubStats.lastUpdated.toLocaleTimeString()}
+              </p>
+            )}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <motion.div
                 variants={itemVariants}
@@ -154,7 +171,7 @@ export function Footer() {
             className="flex flex-col md:flex-row items-center justify-between gap-2 pt-4 border-t border-white/5"
           >
             <p className="text-xs text-muted-foreground font-mono">
-              © 2024 Rishabh Shukla. Built with Next.js & ❤️
+              © 2025 Rishabh Shukla. Built with Next.js & ❤️
             </p>
             <div className="flex items-center gap-4 text-xs text-muted-foreground">
               <motion.a

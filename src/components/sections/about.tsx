@@ -81,39 +81,31 @@ export function About() {
             className="flex justify-center lg:justify-start"
           >
             <div className="relative">
-              {/* Outer glow ring */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-blue opacity-30 blur-xl scale-110 animate-pulse" />
+              {/* Subtle background ring */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-accent-cyan/20 to-accent-purple/20 blur-md" />
               
-              {/* Main avatar container */}
-              <div className="relative w-80 h-80 rounded-full p-2 bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-blue">
-                <div className="w-full h-full rounded-full overflow-hidden bg-black/90 p-2">
+              {/* Main avatar container - more professional */}
+              <div className="relative w-64 h-64 rounded-full p-1 bg-gradient-to-r from-accent-cyan/30 to-accent-purple/30">
+                <div className="w-full h-full rounded-full overflow-hidden bg-gray-900 border border-white/10">
                   <Image
                     src={portfolioConfig.personal.avatar}
                     alt={portfolioConfig.personal.name}
-                    width={300}
-                    height={300}
-                    className="w-full h-full object-cover rounded-full hover:scale-105 transition-transform duration-500"
+                    width={260}
+                    height={260}
+                    className="w-full h-full object-cover rounded-full hover:scale-105 transition-transform duration-300"
                     priority
                   />
                 </div>
               </div>
               
-              {/* Floating elements */}
-              <motion.div
-                className="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-neon-cyan/20 flex items-center justify-center"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-              >
-                <Code className="w-6 h-6 text-neon-cyan" />
-              </motion.div>
+              {/* Static professional icons */}
+              <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-accent-cyan/10 border border-accent-cyan/30 flex items-center justify-center backdrop-blur-sm">
+                <Code className="w-4 h-4 text-accent-cyan" />
+              </div>
               
-              <motion.div
-                className="absolute -bottom-4 -left-4 w-10 h-10 rounded-full bg-neon-purple/20 flex items-center justify-center"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              >
-                <Coffee className="w-5 h-5 text-neon-purple" />
-              </motion.div>
+              <div className="absolute -bottom-2 -left-2 w-8 h-8 rounded-full bg-accent-purple/10 border border-accent-purple/30 flex items-center justify-center backdrop-blur-sm">
+                <Coffee className="w-4 h-4 text-accent-purple" />
+              </div>
             </div>
           </motion.div>
 
@@ -121,7 +113,7 @@ export function About() {
           <motion.div variants={textVariants} className="space-y-8">
             <motion.div variants={itemVariants}>
               <h2 className="text-4xl font-bold mb-4">
-                About <span className="text-neon-cyan glow-neon-cyan">Me</span>
+                About <span className="text-accent-cyan">Me</span>
               </h2>
               <div className="space-y-4 text-gray-300 leading-relaxed">
                 <p>

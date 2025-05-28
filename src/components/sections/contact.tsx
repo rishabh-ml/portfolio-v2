@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -13,12 +13,38 @@ export function Contact() {
     message: ""
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+    
+    try {
+      // Create mailto link as fallback functionality
+      const subject = encodeURIComponent(`Contact from ${formData.name}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      );
+      const mailtoLink = `mailto:contact.rishabh.shukla@gmail.com?subject=${subject}&body=${body}`;
+      
+      // Open email client
+      window.open(mailtoLink);
+      
+      // Show success message
+      setSubmitStatus('success');
+      setFormData({ name: "", email: "", message: "" });
+      
+      // Reset status after 3 seconds
+      setTimeout(() => setSubmitStatus('idle'), 3000);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus('idle'), 3000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -194,11 +220,39 @@ export function Contact() {
 
                     <Button
                       type="submit"
-                      className="w-full text-sm h-12 bg-accent-cyan hover:bg-accent-cyan/90 text-black font-medium rounded-xl transition-all hover:scale-[1.02]"
+                      disabled={isSubmitting}
+                      className="w-full text-sm h-12 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white font-semibold rounded-xl transition-all hover:scale-[1.02] shadow-lg shadow-cyan-500/30 hover:shadow-cyan-400/40 border border-cyan-400/30 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      <Send className="w-4 h-4 mr-2" />
-                      Send Message
+                      {isSubmitting ? (
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-black mr-2" />
+                      ) : (
+                        <Send className="w-4 h-4 mr-2" />
+                      )}
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
                     </Button>
+
+                    {/* Status Messages */}
+                    {submitStatus === 'success' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex items-center gap-2 text-green-400 text-sm"
+                      >
+                        <Check className="w-4 h-4" />
+                        Message sent! Your email client should open.
+                      </motion.div>
+                    )}
+                    
+                    {submitStatus === 'error' && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex items-center gap-2 text-red-400 text-sm"
+                      >
+                        <X className="w-4 h-4" />
+                        Something went wrong. Please try again.
+                      </motion.div>
+                    )}
                   </form>
                 </CardContent>
               </Card>

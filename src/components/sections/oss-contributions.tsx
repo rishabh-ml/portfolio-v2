@@ -15,38 +15,12 @@ const ossContributions = [
     repository: "excalidraw/excalidraw",
     contribution: "Architecture Documentation",
     type: "documentation",
-    description: "Created comprehensive architecture documentation to help new contributors understand the codebase structure and onboarding process.",
+    description: "Authored the official architecture.md to document component structure and internal logic for new contributors. Enhanced project clarity and maintainability through comprehensive architectural documentation.",
     url: "https://github.com/excalidraw/excalidraw",
     status: "merged",
-    date: "2024",
+    date: "Aug 2024",
     impact: "Improved developer onboarding",
-    technologies: ["React", "TypeScript", "Documentation"]
-  },
-  {
-    id: "2",
-    project: "Open Source Initiative",
-    repository: "community/contributions",
-    contribution: "Code Review & Mentoring",
-    type: "mentoring",
-    description: "Actively reviewing pull requests and mentoring new contributors in various open-source projects.",
-    url: "https://github.com/rishabh-ml",
-    status: "ongoing",
-    date: "2024",
-    impact: "Community building",
-    technologies: ["Code Review", "Mentoring", "Community"]
-  },
-  {
-    id: "3",
-    project: "Portfolio Template",
-    repository: "rishabh-ml/portfolio-template",
-    contribution: "Full Project",
-    type: "project",
-    description: "Open-source portfolio template built with Next.js, featuring modern animations and responsive design.",
-    url: "https://github.com/rishabh-ml/portfolio-template",
-    status: "active",
-    date: "2024",
-    impact: "Developer tools",
-    technologies: ["Next.js", "TailwindCSS", "Framer Motion"]
+    technologies: ["TypeScript", "React", "Documentation", "Open Source"]
   }
 ];
 
