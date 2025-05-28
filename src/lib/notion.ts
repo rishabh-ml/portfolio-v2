@@ -4,7 +4,6 @@ import {
   BlogPost, 
   Achievement, 
   TechStack, 
-  Experience,
   NotionDatabase 
 } from './types';
 

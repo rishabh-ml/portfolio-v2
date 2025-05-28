@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Github, Linkedin, Mail, Download, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { cn, scrollToElement } from "@/lib/utils";
+import { Menu, X, Github, Linkedin, Mail, Download } from "lucide-react";
+import { scrollToElement } from "@/lib/utils";
 
 const navItems = [
   { name: "About", href: "#about" },
@@ -21,12 +20,11 @@ const socialLinks = [
 ];
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      // Scroll handling can be added here if needed
     };
 
     window.addEventListener("scroll", handleScroll);

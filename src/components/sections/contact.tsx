@@ -93,7 +93,7 @@ export function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-center space-y-2"
           >
-            <h2 className="text-xl font-semibold text-foreground">Let's Work Together</h2>
+            <h2 className="text-xl font-semibold text-foreground">Let&apos;s Work Together</h2>
             <p className="text-sm text-muted-foreground">
               Available for freelance projects and collaborations
             </p>
@@ -114,7 +114,7 @@ export function Contact() {
               <h3 className="font-medium text-lg text-foreground">Get In Touch</h3>
 
               <div className="space-y-3">
-                {contactInfo.map((info, index) => (
+                {contactInfo.map((info) => (
                   <motion.div
                     key={info.label}
                     variants={itemVariants}

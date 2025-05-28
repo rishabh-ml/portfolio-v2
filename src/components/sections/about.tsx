@@ -125,7 +125,7 @@ export function About() {
               </h2>
               <div className="space-y-4 text-gray-300 leading-relaxed">
                 <p>
-                  I'm a passionate full-stack developer with over {portfolioConfig.stats.yearsOfExperience} years of experience 
+                  I&apos;m a passionate full-stack developer with over {portfolioConfig.stats.yearsOfExperience} years of experience 
                   building scalable web applications. Currently working as an IT Proposal Writer at DatamanUSA, 
                   I specialize in the MERN stack and modern development practices.
                 </p>
@@ -135,7 +135,7 @@ export function About() {
                   maintainable code and staying updated with the latest technologies.
                 </p>
                 <p>
-                  When I'm not coding, you'll find me contributing to open-source projects, writing technical 
+                  When I&apos;m not coding, you&apos;ll find me contributing to open-source projects, writing technical 
                   documentation, or exploring new frameworks and tools that can improve development workflows.
                 </p>
               </div>
