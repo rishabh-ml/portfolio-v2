@@ -4,7 +4,7 @@ export const portfolioConfig = {
     title: "Full Stack Developer",
     subtitle: "Proposal Writer & Open Source Contributor",
     bio: "Fast-learning Full Stack Developer with a passion for clean, scalable code and real-world impact. Experienced in building end-to-end web applications with modern frameworks and deploying them confidently. Active open-source contributor and public learner, bringing a unique blend of technical skill and business communication.",
-    location: "Lucknow, India",
+    location: "India",
     email: "contact.rishabh.shukla@gmail.com",
     phone: "+91 8738060587",
     avatar: "/rishabh.png",
