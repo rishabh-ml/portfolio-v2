@@ -57,19 +57,7 @@ export interface ContactForm {
   message: string;
 }
 
-// Notion API response types
-export interface NotionPage {
-  id: string;
-  properties: Record<string, any>;
-  created_time: string;
-  last_edited_time: string;
-}
 
-export interface NotionDatabase {
-  results: NotionPage[];
-  has_more: boolean;
-  next_cursor?: string;
-}
 
 // Component props types
 export interface SectionProps {

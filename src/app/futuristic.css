@@ -1,0 +1,301 @@
+/* Futuristic Design System */
+
+/* Neon color utilities */
+.text-neon-cyan { color: #00ffc3; }
+.text-neon-purple { color: #ff6eff; }
+.text-neon-blue { color: #a0f0ff; }
+
+.bg-neon-cyan { background-color: #00ffc3; }
+.bg-neon-purple { background-color: #ff6eff; }
+.bg-neon-blue { background-color: #a0f0ff; }
+
+.border-neon-cyan { border-color: #00ffc3; }
+.border-neon-purple { border-color: #ff6eff; }
+.border-neon-blue { border-color: #a0f0ff; }
+
+/* Neon glow effects */
+.glow-neon-cyan {
+  box-shadow: 0 0 10px rgba(0, 255, 195, 0.3), 0 0 20px rgba(0, 255, 195, 0.1);
+}
+
+.glow-neon-purple {
+  box-shadow: 0 0 10px rgba(255, 110, 255, 0.3), 0 0 20px rgba(255, 110, 255, 0.1);
+}
+
+.glow-neon-blue {
+  box-shadow: 0 0 10px rgba(160, 240, 255, 0.3), 0 0 20px rgba(160, 240, 255, 0.1);
+}
+
+/* Compact layout utilities */
+.compact-section {
+  padding: 2rem 1rem;
+}
+
+.compact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.compact-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.compact-card {
+  background: rgba(17, 17, 17, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.compact-card:hover {
+  border-color: rgba(0, 255, 195, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 255, 195, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Glass morphism effects */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Futuristic button styles */
+.btn-neon {
+  position: relative;
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 2px solid;
+  border-radius: 0.5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.025em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.btn-neon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+.btn-neon:hover::before {
+  left: 100%;
+}
+
+.btn-neon-cyan {
+  border-color: #00ffc3;
+  color: #00ffc3;
+}
+
+.btn-neon-cyan:hover {
+  background: rgba(0, 255, 195, 0.05);
+  box-shadow: 0 0 15px rgba(0, 255, 195, 0.2);
+}
+
+.btn-neon-purple {
+  border-color: #ff6eff;
+  color: #ff6eff;
+}
+
+.btn-neon-purple:hover {
+  background: rgba(255, 110, 255, 0.05);
+  box-shadow: 0 0 15px rgba(255, 110, 255, 0.2);
+}
+
+.btn-neon-blue {
+  border-color: #a0f0ff;
+  color: #a0f0ff;
+}
+
+.btn-neon-blue:hover {
+  background: rgba(160, 240, 255, 0.05);
+  box-shadow: 0 0 15px rgba(160, 240, 255, 0.2);
+}
+
+/* Animated backgrounds */
+.gradient-animated {
+  background: linear-gradient(-45deg, rgba(0, 255, 195, 0.05), rgba(255, 110, 255, 0.05), rgba(160, 240, 255, 0.05));
+  background-size: 200% 200%;
+  animation: subtleGradientShift 15s ease infinite;
+}
+
+@keyframes subtleGradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Pulse animations */
+.pulse-glow {
+  animation: subtlePulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes subtlePulse {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+/* Animations */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse-neon {
+  0%, 100% { 
+    box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+    opacity: 1;
+  }
+  50% { 
+    box-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+    opacity: 0.8;
+  }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 3s linear infinite;
+}
+
+.animate-pulse-neon {
+  animation: pulse-neon 2s ease-in-out infinite;
+}
+
+.animate-gradient-shift {
+  animation: gradient-shift 3s ease infinite;
+  background-size: 200% 200%;
+}
+
+/* Gradient Conic Background */
+.bg-gradient-conic {
+  background: conic-gradient(from 0deg, var(--tw-gradient-stops));
+}
+
+/* Loading States */
+.loading-skeleton {
+  background-color: rgba(255, 255, 255, 0.05);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-radius: 0.375rem;
+}
+
+/* Performance Optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-auto {
+  will-change: auto;
+}
+
+/* Hover effects */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(0, 255, 195, 0.2);
+}
+
+.hover-glow-cyan:hover {
+  border-color: rgba(0, 255, 195, 0.6);
+  box-shadow: 0 2px 10px rgba(0, 255, 195, 0.15);
+  transform: translateY(-1px);
+}
+
+.hover-glow-purple:hover {
+  border-color: rgba(255, 110, 255, 0.6);
+  box-shadow: 0 2px 10px rgba(255, 110, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.hover-glow-blue:hover {
+  border-color: rgba(160, 240, 255, 0.6);
+  box-shadow: 0 2px 10px rgba(160, 240, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  .compact-section {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .compact-card {
+    padding: 1rem;
+  }
+  
+  .compact-container {
+    padding: 0 0.75rem;
+  }
+}
+
+/* Scrollbar styling */
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-blue));
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+/* Firefox Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent-cyan) rgba(0, 0, 0, 0.1);
+}
+
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+}
+
+/* Selection Colors */
+::selection {
+  background: rgba(0, 255, 195, 0.3);
+  color: white;
+}
+
+::-moz-selection {
+  background: rgba(0, 255, 195, 0.3);
+  color: white;
+}

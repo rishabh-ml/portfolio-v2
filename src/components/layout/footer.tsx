@@ -1,152 +1,177 @@
 "use client";
 
+import React from "react";
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Download, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ScrollReveal } from "@/components/ui/motion-wrapper";
 
 const socialLinks = [
-  { name: "GitHub", href: "https://github.com/rishabh-ml", icon: Github },
-  { name: "LinkedIn", href: "https://linkedin.com/in/rishabh-ml", icon: Linkedin },
-  { name: "Email", href: "mailto:contact.rishabh.shukla@gmail.com", icon: Mail },
+  {
+    name: "GitHub",
+    href: "https://github.com/rishabh-ml",
+    icon: Github,
+    color: "hover:text-accent-cyan"
+  },
+  {
+    name: "LinkedIn",
+    href: "https://linkedin.com/in/rishabh-ml",
+    icon: Linkedin,
+    color: "hover:text-accent-blue"
+  },
+  {
+    name: "Email",
+    href: "mailto:contact.rishabh.shukla@gmail.com",
+    icon: Mail,
+    color: "hover:text-accent-purple"
+  },
 ];
 
-const quickLinks = [
-  { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Blog", href: "#blog" },
-  { name: "Contact", href: "#contact" },
-];
+// GitHub stats (these would typically come from GitHub API)
+const githubStats = {
+  totalCommits: "500+",
+  currentStreak: "45 days",
+  totalRepos: "25+",
+  contributions: "1.2k+"
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0 }
+};
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="bg-card border-t border-border/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Brand & Description */}
-          <ScrollReveal className="lg:col-span-2">
-            <div className="space-y-4">
-              <h3 className="text-xl font-bold text-foreground">Rishabh Shukla</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                Full Stack Developer passionate about creating efficient, scalable solutions. 
-                Building the future with modern web technologies and clean code.
+    <footer className="py-6 pb-20 md:pb-16 glass border-t border-white/10">
+      <div className="max-w-4xl mx-auto px-4">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="space-y-6"
+        >
+          {/* GitHub Stats Section */}
+          <motion.div
+            variants={itemVariants}
+            className="text-center space-y-4"
+          >
+            <h3 className="text-sm font-medium text-foreground">GitHub Activity</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <motion.div
+                variants={itemVariants}
+                className="text-center space-y-1"
+              >
+                <div className="text-lg font-bold text-accent-cyan">{githubStats.totalCommits}</div>
+                <div className="text-xs text-muted-foreground font-mono">Total Commits</div>
+              </motion.div>
+              <motion.div
+                variants={itemVariants}
+                className="text-center space-y-1"
+              >
+                <div className="text-lg font-bold text-accent-blue">{githubStats.currentStreak}</div>
+                <div className="text-xs text-muted-foreground font-mono">Current Streak</div>
+              </motion.div>
+              <motion.div
+                variants={itemVariants}
+                className="text-center space-y-1"
+              >
+                <div className="text-lg font-bold text-accent-purple">{githubStats.totalRepos}</div>
+                <div className="text-xs text-muted-foreground font-mono">Repositories</div>
+              </motion.div>
+              <motion.div
+                variants={itemVariants}
+                className="text-center space-y-1"
+              >
+                <div className="text-lg font-bold text-accent-cyan">{githubStats.contributions}</div>
+                <div className="text-xs text-muted-foreground font-mono">Contributions</div>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Divider */}
+          <motion.div
+            variants={itemVariants}
+            className="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent"
+          />
+
+          {/* Main Footer Content */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col md:flex-row items-center justify-between gap-4"
+          >
+            {/* Left: Name and tagline */}
+            <div className="text-center md:text-left">
+              <h4 className="text-sm font-medium text-foreground">Rishabh Shukla</h4>
+              <p className="text-xs text-muted-foreground font-mono">
+                Building the future, one commit at a time
               </p>
-              
-              {/* GitHub Stats */}
-              <div className="flex flex-wrap gap-2">
-                <Badge variant="secondary" className="text-xs">
-                  <Github className="w-3 h-3 mr-1" />
-                  500+ Commits
-                </Badge>
-                <Badge variant="secondary" className="text-xs">
-                  🔥 30 Day Streak
-                </Badge>
-                <Badge variant="secondary" className="text-xs">
-                  ⭐ 50+ Stars
-                </Badge>
-              </div>
             </div>
-          </ScrollReveal>
 
-          {/* Quick Links */}
-          <ScrollReveal delay={0.1}>
-            <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
-                Quick Links
-              </h4>
-              <ul className="space-y-2">
-                {quickLinks.map((link) => (
-                  <li key={link.name}>
-                    <button
-                      onClick={() => {
-                        const elementId = link.href.replace("#", "");
-                        document.getElementById(elementId)?.scrollIntoView({
-                          behavior: "smooth",
-                          block: "start",
-                        });
-                      }}
-                      className="text-muted-foreground hover:text-foreground text-sm transition-colors"
-                    >
-                      {link.name}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </ScrollReveal>
-
-          {/* Connect & Resume */}
-          <ScrollReveal delay={0.2}>
-            <div className="space-y-4">
-              <h4 className="text-sm font-semibold text-foreground uppercase tracking-wider">
-                Connect
-              </h4>
-              
-              {/* Social Links */}
-              <div className="flex flex-col space-y-3">
-                {socialLinks.map((link) => (
-                  <motion.a
-                    key={link.name}
-                    href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2 text-muted-foreground hover:text-foreground text-sm transition-colors group"
-                    whileHover={{ x: 4 }}
-                  >
-                    <link.icon className="w-4 h-4" />
-                    <span>{link.name}</span>
-                    <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </motion.a>
-                ))}
-              </div>
-
-              {/* Resume Download */}
-              <div className="pt-2">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="w-full"
-                  onClick={() => {
-                    // Replace with actual resume URL
-                    window.open("/resume.pdf", "_blank");
-                  }}
-                >
-                  <Download className="w-4 h-4 mr-2" />
-                  Download Resume
-                </Button>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-
-        {/* Bottom Section */}
-        <ScrollReveal delay={0.3}>
-          <div className="mt-12 pt-8 border-t border-border/50">
-            <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-              <div className="text-sm text-muted-foreground">
-                © {currentYear} Rishabh Shukla. Built with Next.js & Notion CMS.
-              </div>
-              
-              <div className="flex items-center space-x-4 text-xs text-muted-foreground">
-                <span>Made with ❤️ in India</span>
-                <span>•</span>
+            {/* Center: Social Links */}
+            <div className="flex items-center gap-3">
+              {socialLinks.map((link) => (
                 <motion.a
-                  href="https://github.com/rishabh-ml/rishabh-portfolio-v2"
+                  key={link.name}
+                  href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-foreground transition-colors flex items-center space-x-1"
-                  whileHover={{ scale: 1.05 }}
+                  className={`text-muted-foreground ${link.color} transition-colors p-2 rounded-lg hover:bg-current/10`}
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <Github className="w-3 h-3" />
-                  <span>View Source</span>
+                  <link.icon className="w-4 h-4" />
+                  <span className="sr-only">{link.name}</span>
                 </motion.a>
-              </div>
+              ))}
             </div>
-          </div>
-        </ScrollReveal>
+
+            {/* Right: Resume Download */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => window.open("/resume.pdf", "_blank")}
+              className="text-xs h-8 px-3 hover:bg-accent-cyan/10 hover:text-accent-cyan hover:border-accent-cyan/30"
+            >
+              <Download className="w-3 h-3 mr-1" />
+              Resume
+            </Button>
+          </motion.div>
+
+          {/* Bottom: Copyright and Links */}
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col md:flex-row items-center justify-between gap-2 pt-4 border-t border-white/5"
+          >
+            <p className="text-xs text-muted-foreground font-mono">
+              © 2024 Rishabh Shukla. Built with Next.js & ❤️
+            </p>
+            <div className="flex items-center gap-4 text-xs text-muted-foreground">
+              <motion.a
+                href="https://github.com/rishabh-ml/portfolio-v2"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent-cyan transition-colors flex items-center gap-1"
+                whileHover={{ scale: 1.05 }}
+              >
+                <ExternalLink className="w-3 h-3" />
+                Source Code
+              </motion.a>
+              <span>•</span>
+              <span className="font-mono">v2.0.0</span>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </footer>
   );

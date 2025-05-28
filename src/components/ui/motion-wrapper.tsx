@@ -44,6 +44,28 @@ export const slideInFromBottom: Variants = {
   exit: { opacity: 0, y: 50 }
 };
 
+export const zoomInGlow: Variants = {
+  initial: { opacity: 0, scale: 0.8 },
+  animate: { opacity: 1, scale: 1 },
+  exit: { opacity: 0, scale: 0.8 }
+};
+
+export const fadeInRightStagger: Variants = {
+  initial: { opacity: 0, x: 30 },
+  animate: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: 30 }
+};
+
+export const iconWiggle: Variants = {
+  initial: { rotate: 0, scale: 1 },
+  animate: { rotate: 0, scale: 1 },
+  hover: {
+    rotate: [0, -5, 5, 0],
+    scale: 1.1,
+    transition: { duration: 0.3 }
+  }
+};
+
 // Motion wrapper components
 interface MotionDivProps extends HTMLMotionProps<"div"> {
   variant?: keyof typeof animationVariants;
@@ -56,19 +78,21 @@ const animationVariants = {
   fadeInLeft,
   fadeInRight,
   scaleIn,
-  slideInFromBottom
+  slideInFromBottom,
+  zoomInGlow,
+  fadeInRightStagger
 };
 
-export const MotionDiv = ({ 
-  children, 
-  className, 
-  variant = "fadeInUp", 
-  delay = 0, 
+export const MotionDiv = ({
+  children,
+  className,
+  variant = "fadeInUp",
+  delay = 0,
   duration = 0.5,
-  ...props 
+  ...props
 }: MotionDivProps) => {
   const selectedVariant = animationVariants[variant];
-  
+
   return (
     <motion.div
       className={cn(className)}
@@ -89,11 +113,11 @@ export const MotionDiv = ({
 };
 
 // Stagger container for animating multiple children
-export const StaggerContainer = ({ 
-  children, 
+export const StaggerContainer = ({
+  children,
   className,
   staggerDelay = 0.1,
-  ...props 
+  ...props
 }: HTMLMotionProps<"div"> & { staggerDelay?: number }) => {
   return (
     <motion.div
@@ -112,12 +136,12 @@ export const StaggerContainer = ({
 };
 
 // Scroll reveal component
-export const ScrollReveal = ({ 
-  children, 
+export const ScrollReveal = ({
+  children,
   className,
   variant = "fadeInUp",
   threshold = 0.1,
-  ...props 
+  ...props
 }: MotionDivProps & { threshold?: number }) => {
   return (
     <motion.div
@@ -139,11 +163,11 @@ export const ScrollReveal = ({
 };
 
 // Hover scale component
-export const HoverScale = ({ 
-  children, 
+export const HoverScale = ({
+  children,
   className,
   scale = 1.02,
-  ...props 
+  ...props
 }: HTMLMotionProps<"div"> & { scale?: number }) => {
   return (
     <motion.div
@@ -159,14 +183,14 @@ export const HoverScale = ({
 };
 
 // Typing animation component
-export const TypedText = ({ 
-  text, 
+export const TypedText = ({
+  text,
   className,
   delay = 0,
   speed = 0.05
-}: { 
-  text: string; 
-  className?: string; 
+}: {
+  text: string;
+  className?: string;
   delay?: number;
   speed?: number;
 }) => {

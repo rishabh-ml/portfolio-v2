@@ -2,15 +2,15 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Moon, Sun, Menu, X, Github, Linkedin, Mail } from "lucide-react";
+import { Menu, X, Github, Linkedin, Mail, Download, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useTheme } from "@/components/providers/theme-provider";
 import { cn, scrollToElement } from "@/lib/utils";
 
 const navItems = [
   { name: "About", href: "#about" },
+  { name: "Tech Stack", href: "#tech-stack" },
   { name: "Projects", href: "#projects" },
-  { name: "Blog", href: "#blog" },
+  { name: "OSS", href: "#oss-contributions" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -23,7 +23,6 @@ const socialLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,192 +40,195 @@ export function Navbar() {
   };
 
   return (
-    <motion.header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border/50"
-          : "bg-transparent"
-      )}
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <motion.div
-            className="flex-shrink-0"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <button
+    <>
+      {/* Dock-style Navbar */}
+      <motion.header
+        className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50"
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+      >
+        <nav className="glass-strong rounded-full px-4 py-2 shadow-lg border border-white/10 hover:border-accent-cyan/30 transition-all duration-300">
+          <div className="flex items-center space-x-1">
+            {/* Logo */}
+            <motion.button
               onClick={() => scrollToElement("hero")}
-              className="text-xl font-bold text-foreground hover:text-primary transition-colors"
+              className="text-lg font-bold text-foreground hover:text-accent-cyan px-3 py-1.5 rounded-full transition-all duration-300 hover:bg-accent-cyan/10 hover:shadow-neon-cyan"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               RS
-            </button>
-          </motion.div>
+            </motion.button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            {/* Divider */}
+            <div className="w-px h-6 bg-white/20 mx-1 hidden md:block" />
+
+            {/* Navigation Items */}
+            <div className="hidden lg:flex items-center space-x-1">
               {navItems.map((item) => (
                 <motion.button
                   key={item.name}
                   onClick={() => handleNavClick(item.href)}
-                  className="text-muted-foreground hover:text-foreground px-3 py-2 text-sm font-medium transition-colors relative"
-                  whileHover={{ scale: 1.05 }}
+                  className="text-muted-foreground hover:text-accent-blue px-3 py-1.5 text-sm font-medium rounded-full transition-all duration-300 hover:bg-accent-blue/10"
+                  whileHover={{ scale: 1.05, y: -1 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   {item.name}
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.2 }}
-                  />
                 </motion.button>
               ))}
             </div>
-          </div>
 
-          {/* Desktop Actions */}
-          <div className="hidden md:flex items-center space-x-4">
-            {/* Social Links */}
-            <div className="flex items-center space-x-2">
-              {socialLinks.map((link) => (
+            {/* Divider */}
+            <div className="w-px h-6 bg-white/20 mx-1 hidden lg:block" />
+
+            {/* Actions */}
+            <div className="hidden md:flex items-center space-x-1">
+              {/* Social Links - Show only 2 on medium screens */}
+              {socialLinks.slice(0, 2).map((link, index) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground p-2"
-                  whileHover={{ scale: 1.1 }}
+                  className={`text-muted-foreground p-2 rounded-full transition-all duration-300 ${
+                    index === 0 ? 'hover:text-accent-purple hover:bg-accent-purple/10' : 'hover:text-accent-cyan hover:bg-accent-cyan/10'
+                  }`}
+                  whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.9 }}
                 >
                   <link.icon className="h-4 w-4" />
                   <span className="sr-only">{link.name}</span>
                 </motion.a>
               ))}
+
+              {/* Resume Download - Hidden on smaller screens */}
+              <motion.a
+                href="/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-accent-blue hover:bg-accent-blue/10 p-2 rounded-full transition-all duration-300 hidden lg:block"
+                whileHover={{ scale: 1.1, y: -2 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <Download className="h-4 w-4" />
+                <span className="sr-only">Download Resume</span>
+              </motion.a>
             </div>
 
-            {/* Theme Toggle */}
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={toggleTheme}
-              className="relative"
-            >
-              <motion.div
-                initial={false}
-                animate={{ rotate: theme === "dark" ? 0 : 180 }}
-                transition={{ duration: 0.3 }}
+            {/* Mobile menu button */}
+            <div className="md:hidden ml-2">
+              <motion.button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="text-muted-foreground hover:text-accent-cyan hover:bg-accent-cyan/10 p-2 rounded-full transition-all duration-300"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
               >
-                {theme === "dark" ? (
-                  <Sun className="h-4 w-4" />
-                ) : (
-                  <Moon className="h-4 w-4" />
-                )}
-              </motion.div>
-              <span className="sr-only">Toggle theme</span>
-            </Button>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={isMobileMenuOpen ? "close" : "menu"}
+                    initial={{ opacity: 0, rotate: -90 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    exit={{ opacity: 0, rotate: 90 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {isMobileMenuOpen ? (
+                      <X className="h-4 w-4" />
+                    ) : (
+                      <Menu className="h-4 w-4" />
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+                <span className="sr-only">Toggle menu</span>
+              </motion.button>
+            </div>
           </div>
+        </nav>
+      </motion.header>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={isMobileMenuOpen ? "close" : "menu"}
-                  initial={{ opacity: 0, rotate: -90 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  exit={{ opacity: 0, rotate: 90 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {isMobileMenuOpen ? (
-                    <X className="h-5 w-5" />
-                  ) : (
-                    <Menu className="h-5 w-5" />
-                  )}
-                </motion.div>
-              </AnimatePresence>
-              <span className="sr-only">Toggle menu</span>
-            </Button>
-          </div>
-        </div>
+      {/* Mobile Navigation Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            className="fixed inset-0 z-40 md:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
+            {/* Mobile Menu */}
             <motion.div
-              className="md:hidden"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
+              className="absolute bottom-16 left-1/2 transform -translate-x-1/2 w-72 max-w-[85vw]"
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 20, scale: 0.95 }}
               transition={{ duration: 0.3 }}
             >
-              <div className="px-2 pt-2 pb-3 space-y-1 bg-background/95 backdrop-blur-md border-t border-border/50">
-                {navItems.map((item, index) => (
-                  <motion.button
-                    key={item.name}
-                    onClick={() => handleNavClick(item.href)}
-                    className="block w-full text-left px-3 py-2 text-base font-medium text-muted-foreground hover:text-foreground transition-colors"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    {item.name}
-                  </motion.button>
-                ))}
-                
-                {/* Mobile Social Links */}
-                <div className="flex items-center justify-center space-x-4 pt-4">
-                  {socialLinks.map((link) => (
+              <div className="glass-strong rounded-xl p-4 shadow-xl">
+                {/* Navigation Items */}
+                <div className="space-y-1">
+                  {navItems.map((item, index) => (
+                    <motion.button
+                      key={item.name}
+                      onClick={() => handleNavClick(item.href)}
+                      className="block w-full text-left px-3 py-2 text-sm font-medium text-muted-foreground hover:text-accent-blue hover:bg-accent-blue/10 rounded-lg transition-all"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ x: 4 }}
+                    >
+                      {item.name}
+                    </motion.button>
+                  ))}
+                </div>
+
+                {/* Divider */}
+                <div className="my-4 h-px bg-white/10" />
+
+                {/* Mobile Actions */}
+                <div className="flex items-center justify-center space-x-3">
+                  {socialLinks.map((link, index) => (
                     <motion.a
                       key={link.name}
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground p-2"
+                      className={`p-2 rounded-lg transition-colors duration-300 ${
+                        index === 0 ? 'text-muted-foreground hover:text-accent-purple hover:bg-accent-purple/10' :
+                        index === 1 ? 'text-muted-foreground hover:text-accent-cyan hover:bg-accent-cyan/10' :
+                        'text-muted-foreground hover:text-accent-blue hover:bg-accent-blue/10'
+                      }`}
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
-                      <link.icon className="h-5 w-5" />
+                      <link.icon className="h-4 w-4" />
                       <span className="sr-only">{link.name}</span>
                     </motion.a>
                   ))}
-                  
-                  {/* Mobile Theme Toggle */}
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={toggleTheme}
-                    className="relative"
+
+                  {/* Mobile Resume Download */}
+                  <motion.a
+                    href="/resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted-foreground hover:text-accent-blue hover:bg-accent-blue/10 p-2 rounded-lg transition-colors duration-300"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
                   >
-                    <motion.div
-                      initial={false}
-                      animate={{ rotate: theme === "dark" ? 0 : 180 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {theme === "dark" ? (
-                        <Sun className="h-5 w-5" />
-                      ) : (
-                        <Moon className="h-5 w-5" />
-                      )}
-                    </motion.div>
-                    <span className="sr-only">Toggle theme</span>
-                  </Button>
+                    <Download className="h-4 w-4" />
+                    <span className="sr-only">Download Resume</span>
+                  </motion.a>
                 </div>
               </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </nav>
-    </motion.header>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
