@@ -24,19 +24,8 @@ const socialLinks = [
     href: "mailto:contact.rishabh.shukla@gmail.com",
     icon: Mail,
     color: "hover:text-accent-purple"
-  },
+  }
 ];
-
-// GitHub stats (these would typically come from GitHub API)
-// Commenting out static stats since we now use real GitHub API data
-/*
-const githubStats = {
-  totalCommits: "500+",
-  currentStreak: "45 days",
-  totalRepos: "25+",
-  contributions: "1.2k+"
-};
-*/
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -55,8 +44,7 @@ const itemVariants = {
 };
 
 export function Footer() {
-  // Use real GitHub stats from API
-  const githubStats = useGitHubStats('rishabh-ml');
+  const githubStats = useGitHubStats("rishabh-ml");
 
   return (
     <footer className="py-6 pb-20 md:pb-16 glass border-t border-white/10">
@@ -89,28 +77,36 @@ export function Footer() {
                 variants={itemVariants}
                 className="text-center space-y-1"
               >
-                <div className="text-lg font-bold text-accent-cyan">{githubStats.totalCommits}</div>
+                <div className="text-lg font-bold text-accent-cyan">
+                  {githubStats.totalCommits}
+                </div>
                 <div className="text-xs text-muted-foreground font-mono">Total Commits</div>
               </motion.div>
               <motion.div
                 variants={itemVariants}
                 className="text-center space-y-1"
               >
-                <div className="text-lg font-bold text-accent-blue">{githubStats.currentStreak}</div>
+                <div className="text-lg font-bold text-accent-blue">
+                  {githubStats.isLoading ? "..." : githubStats.currentStreak}
+                </div>
                 <div className="text-xs text-muted-foreground font-mono">Current Streak</div>
               </motion.div>
               <motion.div
                 variants={itemVariants}
                 className="text-center space-y-1"
               >
-                <div className="text-lg font-bold text-accent-purple">{githubStats.totalRepos}</div>
+                <div className="text-lg font-bold text-accent-purple">
+                  {githubStats.totalRepos}
+                </div>
                 <div className="text-xs text-muted-foreground font-mono">Repositories</div>
               </motion.div>
               <motion.div
                 variants={itemVariants}
                 className="text-center space-y-1"
               >
-                <div className="text-lg font-bold text-accent-cyan">{githubStats.contributions}</div>
+                <div className="text-lg font-bold text-accent-cyan">
+                  {githubStats.contributions}
+                </div>
                 <div className="text-xs text-muted-foreground font-mono">Contributions</div>
               </motion.div>
             </div>
@@ -165,7 +161,7 @@ export function Footer() {
             </Button>
           </motion.div>
 
-          {/* Bottom: Copyright and Links */}
+          {/* Bottom Footer */}
           <motion.div
             variants={itemVariants}
             className="flex flex-col md:flex-row items-center justify-between gap-2 pt-4 border-t border-white/5"
