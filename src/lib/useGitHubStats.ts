@@ -24,21 +24,24 @@ export function useGitHubStats(username: string = 'rishabh-ml'): GitHubStats {
       try {
         setStats(prev => ({ ...prev, isLoading: true }));
 
-        // 1. Get real-time contribution data from 3rd party API
-        const contributionsResponse = await fetch(`https://github-contributions-api.deno.dev/${username}.json`);
-        const contributionData = await contributionsResponse.json();
+        // 1. Fetch contribution data (real streak, total commits, etc.)
+        const contribRes = await fetch(`https://github-contributions-api.deno.dev/${username}.json`);
+        const contribData = await contribRes.json();
 
-        // 2. Get user profile info for repo count
-        const userResponse = await fetch(`https://api.github.com/users/${username}`);
-        const userData = await userResponse.json();
+        // 2. Fetch public repo count
+        const userRes = await fetch(`https://api.github.com/users/${username}`);
+        const userData = await userRes.json();
 
         const totalRepos = userData.public_repos.toString();
-        const totalContributions = contributionData.totalContributions;
-        const currentStreak = contributionData.currentStreak || 0;
+        const totalContributions = contribData.totalContributions;
+        const streakDays = contribData.currentStreak || 0;
+
+        const currentStreak =
+          streakDays > 1 ? `${streakDays} day${streakDays > 1 ? 's' : ''} in a row` : 'Today';
 
         setStats({
           totalCommits: `${totalContributions}+`,
-          currentStreak: currentStreak === 0 ? 'Today' : `${currentStreak}d`,
+          currentStreak,
           totalRepos: `${totalRepos}+`,
           contributions: `${totalContributions}`,
           isLoading: false,
@@ -59,7 +62,7 @@ export function useGitHubStats(username: string = 'rishabh-ml'): GitHubStats {
 
     fetchGitHubStats();
 
-    // Optionally refresh every 10 minutes
+    // Refresh every 10 minutes
     const interval = setInterval(fetchGitHubStats, 10 * 60 * 1000);
     return () => clearInterval(interval);
   }, [username]);
