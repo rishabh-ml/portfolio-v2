@@ -24,20 +24,21 @@ export function useGitHubStats(username: string = 'rishabh-ml'): GitHubStats {
       try {
         setStats(prev => ({ ...prev, isLoading: true }));
 
-        // 1. Fetch contribution data (real streak, total commits, etc.)
+        // 1. Fetch real GitHub contribution data
         const contribRes = await fetch(`https://github-contributions-api.deno.dev/${username}.json`);
         const contribData = await contribRes.json();
 
-        // 2. Fetch public repo count
+        // 2. Fetch user repo stats from GitHub API
         const userRes = await fetch(`https://api.github.com/users/${username}`);
         const userData = await userRes.json();
 
         const totalRepos = userData.public_repos.toString();
         const totalContributions = contribData.totalContributions;
-        const streakDays = contribData.currentStreak || 0;
+        const streakDays = contribData.currentStreak?.length || 0;
 
-        const currentStreak =
-          streakDays > 1 ? `${streakDays} day${streakDays > 1 ? 's' : ''} in a row` : 'Today';
+        const currentStreak = streakDays > 1
+          ? `${streakDays} day${streakDays > 1 ? 's' : ''} in a row`
+          : 'Today';
 
         setStats({
           totalCommits: `${totalContributions}+`,
@@ -62,7 +63,6 @@ export function useGitHubStats(username: string = 'rishabh-ml'): GitHubStats {
 
     fetchGitHubStats();
 
-    // Refresh every 10 minutes
     const interval = setInterval(fetchGitHubStats, 10 * 60 * 1000);
     return () => clearInterval(interval);
   }, [username]);
